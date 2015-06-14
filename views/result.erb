@@ -1,3 +1,10 @@
+<div class="ui large breadcrumb">
+  <a class="section">Home</a>
+  <i class="right chevron icon divider"></i>
+  <div class="active section">Result</div>
+</div>
+
+<h1>JOB一覧</h1>
 <table class="ui table">
   <thead>
     <tr>
@@ -7,30 +14,33 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><div class="ui mini active inline loader"></div>&nbsp; 実行中</td>
-      <td>滞在時間に関する新しいテストを追加</td>
-      <td>2015/6/15 10:00:00</td>
+    <% @results.each do |res| %>
+    <tr data-id="<%= res.id %>" data-status="<%= res.status %>">
+      <td><% if res.status == 0 %>
+        <%= '<div class="ui mini active inline loader"></div>&nbsp; 実行中' %>
+        <% elsif res.status == 1 %>
+        <%= '<i class="sun icon"></i>成功' %>
+        <% else %>
+        <%= '<i class="rain icon"></i>失敗' %>
+        <% end %>
+      </td>
+      <td><%= res.description %></td>
+      <td><%= res.created %></td>
     </tr>
-    <tr class="positive">
-      <td><i class="sun icon"></i>成功</td>
-      <td>chromeにて基本テスト</td>
-      <td>2015/6/15 10:00:00</td>
-    </tr>
-    <tr class="positive">
-      <td><i class="sun icon"></i>成功</td>
-      <td>テスト</td>
-      <td>2015/6/15 10:00:00</td>
-    </tr>
-    <tr class="negative">
-      <td><i class="rain icon"></i>失敗</td>
-      <td>テスト</td>
-      <td>2015/6/15 10:00:00</td>
-    </tr>
-    <tr class="positive">
-      <td><i class="sun icon"></i>成功</td>
-      <td>テスト</td>
-      <td>2015/6/15 10:00:00</td>
-    </tr>
+    <% end %>
   </tbody>
 </table>
+<script type="text/javascript">
+$(function(){
+  $('[data-status="1"]').addClass('positive');
+  $('[data-status="2"]').addClass('negative');
+  $('tr[data-id]').on('click', function(){
+    location.href = '/result/detail/' + $(this).attr('data-id');
+  });
+});
+</script>
+<style>
+tr[data-id] {
+  cursor: pointer;
+}
+</style>

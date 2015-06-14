@@ -1,4 +1,9 @@
-<form action="">
+<div class="ui large breadcrumb">
+  <a class="section">Home</a>
+  <i class="right chevron icon divider"></i>
+  <div class="active section">Execute</div>
+</div>
+<form action="/result" method="post">
   <div class="ui grid">
     <div class="four wide column">
       <table class="ui table">
@@ -46,10 +51,10 @@
   <div class="ui form">
     <div class="field">
       <label>テスト概要</label>
-      <textarea name="name" rows="8" cols="40"></textarea>
+      <textarea name="description" rows="8"></textarea>
     </div>
     <div class="field">
-      <button class="fluid ui primary button">テスト実行</button>
+      <button type="submit" class="fluid ui primary button">テスト実行</button>
     </div>
   </div>
 </form>

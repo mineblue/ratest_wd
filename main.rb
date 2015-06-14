@@ -4,6 +4,15 @@ require 'sqlite3'
 require 'active_record'
 require "rack/cache"
 require 'json'
+require "date"
+
+ActiveRecord::Base.establish_connection(
+  "adapter" => "sqlite3",
+  "database" => "./tests.db"
+)
+
+class Tests < ActiveRecord::Base
+end
 
 use Rack::Cache
 
@@ -24,9 +33,27 @@ get '/execute' do
 end
 
 get '/result' do
+  @results = Tests.order('id desc').all
   erb :result
 end
 
-get '/result/detail/:id' do |id|
+post '/result' do
+  d = Time.now
+  df1 = d.strftime("%Y/%m/%d %H:%M:%S")
+  df2 = d.strftime("%Y%m%d%H%M%S")
+  Tests.create({
+    :description => params[:description],
+    :status => 0,
+    :created => df1,
+    :updated => df1,
+    :result => '',
+    :putdir => 'output/' + df2,
+    :target => ''
+  })
+  redirect '/result'
+end
+
+get %r{/result/detail/(\d+)} do |id|
+  @test = Tests.find(id)
   erb :result_detail
 end
