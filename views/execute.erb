@@ -1,0 +1,61 @@
+<form action="">
+  <div class="ui grid">
+    <div class="four wide column">
+      <table class="ui table">
+        <thead>
+          <tr>
+            <th>OFF/ON</th>
+            <th>デバイスID</th>
+          </tr>
+        </thead>
+        <tdoby>
+          <% for i in 1..10 do %>
+          <tr>
+            <td>
+              <div class="field">
+                <div class="ui toggle checkbox">
+                  <input type="checkbox" checked>
+                </div>
+              </div>
+            </td>
+            <td><%= '1000' + i.to_s %></td>
+          </tr>
+          <% end %>
+        </tdoby>
+      </table>
+    </div>
+    <div class="twelve wide column">
+      <table class="ui table">
+        <thead>
+          <tr>
+            <th>OFF/ON</th>
+            <th>テストID</th>
+          </tr>
+        </thead>
+        <tdoby>
+          <% for i in 1..100 do %>
+          <tr>
+            <td><div class="field"><div class="ui toggle checkbox"><input type="checkbox"></div></div></td>
+            <td></td>
+          </tr>
+          <% end %>
+        </tdoby>
+      </table>
+    </div>
+  </div>
+  <div class="ui form">
+    <div class="field">
+      <label>テスト概要</label>
+      <textarea name="name" rows="8" cols="40"></textarea>
+    </div>
+    <div class="field">
+      <button class="fluid ui primary button">テスト実行</button>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+$(function(){
+  $('.ui.checkbox').checkbox();
+});
+</script>

@@ -1,0 +1,53 @@
+<div class="ui top attached tabular menu">
+    <a class="active item" data-tab="base">基本設定</a>
+    <a class="item" data-tab="device">デバイス設定</a>
+    <a class="item" data-tab="testcase">テストケース</a>
+</div>
+
+<div class="ui bottom attached active tab segment" data-tab="base">
+  <div class="ui form">
+    <div class="field">
+      <label>基本設定</label>
+      <textarea class="config_edit"></textarea>
+    </div>
+    <div class="field">
+      <button class="ui primary button">
+        保存
+      </button>
+    </div>
+  </div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="device">
+  <div class="ui form">
+    <div class="field">
+      <label>デバイス設定</label>
+      <textarea class="config_edit"></textarea>
+    </div>
+    <div class="field">
+      <button class="ui primary button">
+        保存
+      </button>
+    </div>
+  </div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="testcase">
+  <div class="ui form">
+    <div class="field">
+      <label>テストケース設定</label>
+      <textarea class="config_edit"></textarea>
+    </div>
+    <div class="field">
+      <button class="ui primary button">
+        保存
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+$(function(){
+  $('.menu .item').tab();
+});
+
+</script>
