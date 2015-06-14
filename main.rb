@@ -14,6 +14,11 @@ ActiveRecord::Base.establish_connection(
 class Tests < ActiveRecord::Base
 end
 
+helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+end
+
 use Rack::Cache
 
 before do
